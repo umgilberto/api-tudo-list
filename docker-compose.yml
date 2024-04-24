@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  tudolist_db:
+    image: postgres
+    container_name: tudolist_db
+    ports:
+      - ${TYPEORM_PORT}:5432
+    environment:
+      - POSTGRES_USER=${TYPEORM_USERNAME}
+      - POSTGRES_PASSWORD=${TYPEORM_PASSWORD}
+      - POSTGRES_DB=${TYPEORM_DATABASE}
+    volumes:
+      - local_storage:/data/postgres
+      
+volumes:
+  local_storage:
+    driver: local
