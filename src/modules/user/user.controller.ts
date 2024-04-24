@@ -15,7 +15,7 @@ import { CreateUserInput, UpdateUserInput, UserOutput } from './dtos';
 import { UserService } from './user.service';
 
 @Controller(RouteEnum.User)
-export class AuthController {
+export class UserController {
   constructor(private userService: UserService) {}
 
   @ApiOperation({ summary: 'Create user endpoint' })
