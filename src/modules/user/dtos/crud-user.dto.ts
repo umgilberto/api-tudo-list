@@ -6,7 +6,7 @@ import { BaseIdDto } from 'src/shareds/dtos';
 export class UserDTO extends BaseIdDto {
   @ApiProperty({
     description: 'User name.',
-    example: 'Admin da Silva',
+    example: 'Morgan, big news',
   })
   @IsString()
   @Expose()
@@ -49,11 +49,15 @@ export class UpdateUserInput extends PartialType(
   OmitType(UserDTO, ['password']),
 ) {}
 
+export class UserPaginationOutput {
+  data: UserOutput[];
+  total: number;
+}
 export class UserOutput extends PartialType(
   OmitType(UserDTO, ['password', 'isMaster']),
 ) {}
 
-export class CreateUserInput extends UserDTO {}
+export class CreateUserInput extends PartialType(OmitType(UserDTO, ['id'])) {}
 
 export class CreateUserOutPut extends OmitType(UserDTO, ['password']) {}
 

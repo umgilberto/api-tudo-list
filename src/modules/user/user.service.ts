@@ -1,8 +1,14 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
-import { CreateUserInput, UpdateUserInput, UserOutput } from './dtos';
+import {
+  CreateUserInput,
+  UpdateUserInput,
+  UserOutput,
+  UserPaginationOutput,
+} from './dtos';
 import { UserRepository } from './repositories';
 import * as utils from '../../shareds/utils';
+import { GetUserOutput } from './dtos/user-pagination';
 
 @Injectable()
 export class UserService {
@@ -25,6 +31,12 @@ export class UserService {
       UserOutput,
       await this.userRepository.findOne({ where: { id: userCreated.id } }),
     );
+  }
+
+  async getAll(): Promise<UserPaginationOutput> {
+    const [_users, _total] = await this.userRepository.findAndCount();
+
+    return new GetUserOutput(_users, _total);
   }
 
   async getOne(id: string): Promise<UserOutput> {
@@ -55,5 +67,15 @@ export class UserService {
       UserOutput,
       await this.userRepository.findOne({ where: { id } }),
     );
+  }
+
+  async delete(id: string): Promise<void> {
+    const user = await this.userRepository.findOne({
+      where: { id },
+    });
+
+    if (!user) throw new ConflictException({ key: 'not_fround_user' });
+
+    await this.userRepository.delete(user.id);
   }
 }
