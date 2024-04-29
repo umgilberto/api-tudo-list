@@ -11,16 +11,18 @@ import {
   Body,
   Delete,
 } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
+import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { RouteEnum } from 'src/shareds/enums/routes.enum';
 import { CreateUserInput, UpdateUserInput, UserOutput } from './dtos';
 import { UserService } from './user.service';
 import { GetUserOutput } from './dtos/user-pagination';
+import { SwaggerTagsEnum } from 'src/shareds/enums/swaggerTags.enum';
 
 @Controller(RouteEnum.User)
 export class UserController {
   constructor(private userService: UserService) {}
 
+  @ApiTags(SwaggerTagsEnum.User)
   @ApiOperation({ summary: 'Create user endpoint' })
   @ApiOkResponse({ description: 'Successfully', type: UserOutput })
   @Post()
@@ -30,6 +32,7 @@ export class UserController {
     return this.userService.create(data);
   }
 
+  @ApiTags(SwaggerTagsEnum.User)
   @ApiOperation({ summary: 'Create user endpoint' })
   @ApiOkResponse({ description: 'Successfully', type: UserOutput })
   @Put(':id')
@@ -38,6 +41,7 @@ export class UserController {
     return this.userService.update(id, <UpdateUserInput>req['user']);
   }
 
+  @ApiTags(SwaggerTagsEnum.User)
   @ApiOperation({ summary: 'get user endpoint' })
   @ApiOkResponse({ description: 'Successfully', type: UserOutput })
   @Get(':id')
@@ -46,6 +50,7 @@ export class UserController {
     return this.userService.getOne(id);
   }
 
+  @ApiTags(SwaggerTagsEnum.User)
   @ApiOperation({ summary: 'list user endpoint' })
   @ApiOkResponse({ description: 'Successfully', type: GetUserOutput })
   @Get()
@@ -53,6 +58,8 @@ export class UserController {
   listAll(): Promise<GetUserOutput> {
     return this.userService.getAll();
   }
+
+  @ApiTags(SwaggerTagsEnum.User)
   @ApiOperation({ summary: 'Delete user endpoint' })
   @ApiOkResponse({ description: 'Successfully', type: UserOutput })
   @Delete(':id')
