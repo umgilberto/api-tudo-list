@@ -7,7 +7,6 @@ import { AuthRepository } from './repositories';
 import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { environment } from 'src/configs';
-import { UserModule } from '../user';
 
 @Module({
   imports: [
@@ -17,7 +16,6 @@ import { UserModule } from '../user';
       secret: environment.jwt.secret,
       signOptions: { expiresIn: environment.jwt.expiresIn },
     }),
-    UserModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, AuthRepository],

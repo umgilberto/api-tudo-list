@@ -16,7 +16,6 @@ import { environment } from 'src/configs';
 export class AuthService {
   constructor(
     private readonly authRepository: AuthRepository,
-    @Inject(forwardRef(() => UserRepository))
     private readonly userRepository: UserRepository,
     private readonly jwtService: JwtService,
   ) {}

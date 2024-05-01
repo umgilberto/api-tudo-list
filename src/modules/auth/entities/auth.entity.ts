@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne } from 'typeorm';
+import { Column, Entity, ManyToOne, Relation } from 'typeorm';
 import { CustomBaseEntity } from 'src/shareds/entity';
 import { UserEntity } from 'src/modules/user';
 
@@ -11,8 +11,8 @@ export class AuthEntity extends CustomBaseEntity {
   })
   token: string;
 
-  @ManyToOne(() => UserEntity, (user) => user.auth)
-  user: UserEntity;
+  @ManyToOne('user', 'auth')
+  user: Relation<UserEntity>;
 
   @Column({
     type: 'varchar',
