@@ -1,9 +1,4 @@
-import {
-  ConflictException,
-  forwardRef,
-  Inject,
-  Injectable,
-} from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthRepository } from './repositories';
 import { AuthOutPut, LoginDTO } from './dtos';
 import { UserRepository } from '../user';
@@ -24,12 +19,12 @@ export class AuthService {
     const user = await this.userRepository.findOneBy({
       email: username,
     });
+    const match = await bcrypt.compare(password, user.password ?? '');
 
-    if (!user) throw new ConflictException({ key: 'not_fround_user' });
-
-    const match = await bcrypt.compare(user.password, password ?? '');
-
-    if (!match) return null;
+    if (!user || match)
+      throw new UnauthorizedException({
+        key: 'password or username incorrect',
+      });
 
     const expiresIn = environment.jwt.expiresIn;
     const accessToken = this.jwtService.sign({
