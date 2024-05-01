@@ -24,7 +24,7 @@ export class UserService {
 
     const userCreated = await this.userRepository.save({
       ...data,
-      password: bcrypt.hash(data.password, 8),
+      password: await bcrypt.hash(data.password, 8),
     });
 
     return utils.autoMapper(

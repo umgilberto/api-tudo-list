@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { CustomBaseEntity } from 'src/shareds/entity';
+import { AuthEntity } from 'src/modules/auth/entities';
 
 @Entity({ name: 'user' })
 export class UserEntity extends CustomBaseEntity {
@@ -36,4 +37,7 @@ export class UserEntity extends CustomBaseEntity {
     default: false,
   })
   isMaster: boolean;
+
+  @OneToMany(() => AuthEntity, (auth) => auth.user)
+  auth: AuthEntity[];
 }
