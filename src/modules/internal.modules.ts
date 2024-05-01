@@ -1,3 +1,4 @@
 import * as User from './user';
+import * as Auth from './auth';
 
-export const internalModules = [User.UserModule];
+export const internalModules = [Auth.AuthModule, User.UserModule];
