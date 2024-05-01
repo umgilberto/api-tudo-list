@@ -6,6 +6,7 @@ import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { autoMapper } from 'src/shareds/utils';
 import { environment } from 'src/configs';
+import { JwtPayload } from 'src/shareds/strategies';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,7 @@ export class AuthService {
     const user = await this.userRepository.findOneBy({
       email: username,
     });
-    const match = await bcrypt.compare(password, user.password ?? '');
+    const match = await bcrypt.compare(password, user?.password ?? '');
 
     if (!user || match)
       throw new UnauthorizedException({
@@ -27,9 +28,12 @@ export class AuthService {
       });
 
     const expiresIn = environment.jwt.expiresIn;
-    const accessToken = this.jwtService.sign({
-      id: user.id,
-    });
+
+    const payload: JwtPayload = {
+      sub: user.id,
+    };
+
+    const accessToken = this.jwtService.sign(payload);
 
     const authCreated = await this.authRepository.save({
       token: accessToken,

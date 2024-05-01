@@ -10,6 +10,7 @@ import {
   Put,
   Body,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { RouteEnum } from 'src/shareds/enums/routes.enum';
@@ -17,7 +18,9 @@ import { CreateUserInput, UpdateUserInput, UserOutput } from './dtos';
 import { UserService } from './user.service';
 import { GetUserOutput } from './dtos/user-pagination';
 import { SwaggerTagsEnum } from 'src/shareds/enums/swaggerTags.enum';
+import { JwtAuthGuard } from 'src/guards';
 
+@UseGuards(JwtAuthGuard)
 @Controller(RouteEnum.User)
 export class UserController {
   constructor(private userService: UserService) {}
