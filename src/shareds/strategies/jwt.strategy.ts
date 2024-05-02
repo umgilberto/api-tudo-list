@@ -39,7 +39,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       },
     });
 
-    console.log(auth);
     if (!auth)
       throw new UnauthorizedException({
         key: 'invalid_user',

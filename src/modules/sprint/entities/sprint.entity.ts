@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { CustomBaseEntity } from 'src/shareds/entity';
+import { TaskEntity } from 'src/modules/task';
 
 @Entity({ name: 'sprint' })
 export class SprintEntity extends CustomBaseEntity {
@@ -31,4 +32,7 @@ export class SprintEntity extends CustomBaseEntity {
     type: 'date',
   })
   endDate: Date;
+
+  @OneToMany(() => TaskEntity, (task) => task.sprint)
+  cards: TaskEntity[];
 }
