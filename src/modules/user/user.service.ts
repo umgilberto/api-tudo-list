@@ -44,7 +44,7 @@ export class UserService {
       where: { id },
     });
 
-    if (!user) throw new ConflictException({ key: 'not_fround_user' });
+    if (!user) throw new ConflictException({ key: 'not_found_user' });
 
     return utils.autoMapper(UserOutput, user);
   }
@@ -54,7 +54,7 @@ export class UserService {
       where: { id },
     });
 
-    if (!user) throw new ConflictException({ key: 'not_fround_user' });
+    if (!user) throw new ConflictException({ key: 'not_found_user' });
 
     await this.userRepository.update(
       { id },
@@ -74,7 +74,7 @@ export class UserService {
       where: { id },
     });
 
-    if (!user) throw new ConflictException({ key: 'not_fround_user' });
+    if (!user) throw new ConflictException({ key: 'not_found_user' });
 
     await this.userRepository.delete(user.id);
   }
