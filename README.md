@@ -24,18 +24,17 @@ The server will start and be ready to receive requests
 #### API Routes
 All routes are documented in the API's Swagger, accessed through the route /api.
 
-#### Tecnologias Utilizadas
-![Alt text](./doc/images/node_icon.svg)
+#### Technologies Used
+<div style="display: flex; gap: 5px; height: 50px;">
 <img src="./doc/images/node_icon.svg">
 
-![Alt text](./doc/images/nest_icon.svg)
 <img src="./doc/images/nest_icon.svg">
 
-![Alt text](./doc/images/typescript_icon.svg)
 <img src="./doc/images/typescript_icon.svg">
 
-![Alt text](./doc/images/typeorm_icon.svg)
 <img src="./doc/images/typeorm_icon.svg">
+</div>
+
 
 #### Contributing
 
