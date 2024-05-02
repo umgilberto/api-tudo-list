@@ -48,6 +48,8 @@ All routes are documented in the API's Swagger, accessed through the route /api.
 
 <img src="./doc/images/typescript_icon.svg">
 
+<img src="./doc/images/docker_icon.svg">
+
 <img src="./doc/images/typeorm_icon.svg">
 </div>
 
