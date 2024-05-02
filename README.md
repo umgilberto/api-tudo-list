@@ -59,4 +59,4 @@ All routes are documented in the API's Swagger, accessed through the route /api.
 Contributions are welcome! Feel free to open issues to report problems or propose improvements. If you wish to contribute directly, please open a pull request with your changes..
 
 ### License
-This project is licensed under the MIT License.
+This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/)
