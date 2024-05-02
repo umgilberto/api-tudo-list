@@ -25,7 +25,7 @@ The server will start and be ready to receive requests
 All routes are documented in the API's Swagger, accessed through the route /api.
 
 #### Technologies Used
-<div style="display: flex; gap: 5px; height: 50px;">
+<div style="display: flex; gap: 5px; height: 20px;">
 <img src="./doc/images/node_icon.svg">
 
 <img src="./doc/images/nest_icon.svg">
