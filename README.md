@@ -27,10 +27,13 @@ All routes are documented in the API's Swagger, accessed through the route /api.
 #### Tecnologias Utilizadas
 ![Alt text](./doc/images/node_icon.svg)
 <img src="./doc/images/node_icon.svg">
+
 ![Alt text](./doc/images/nest_icon.svg)
 <img src="./doc/images/nest_icon.svg">
+
 ![Alt text](./doc/images/typescript_icon.svg)
 <img src="./doc/images/typescript_icon.svg">
+
 ![Alt text](./doc/images/typeorm_icon.svg)
 <img src="./doc/images/typeorm_icon.svg">
 
