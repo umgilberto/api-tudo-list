@@ -35,7 +35,7 @@ export class SprintService {
   }
 
   async getOne(id: string): Promise<SprintOutput> {
-    const sprint = this.sprintRepository.findOne({
+    const sprint = await this.sprintRepository.findOne({
       where: { id },
     });
 
@@ -45,7 +45,7 @@ export class SprintService {
   }
 
   async update(id: string, data: UpdateSprintInput): Promise<SprintOutput> {
-    const sprint = this.sprintRepository.findOne({
+    const sprint = await this.sprintRepository.findOne({
       where: { id },
     });
 
@@ -69,7 +69,7 @@ export class SprintService {
       where: { id },
     });
 
-    if (!sprint) throw new ConflictException({ key: 'not_fround_sprint' });
+    if (!sprint) throw new ConflictException({ key: 'not_found_sprint' });
 
     await this.sprintRepository.delete(sprint.id);
   }
